@@ -8,11 +8,78 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.index = void 0;
+const topic_model_1 = __importDefault(require("../../models/topic.model"));
+const song_model_1 = __importDefault(require("../../models/song.model"));
+const singer_model_1 = __importDefault(require("../../models/singer.model"));
 const index = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const statistic = {
+        topicSong: {
+            total: 0,
+            active: 0,
+            inactive: 0,
+        },
+        song: {
+            total: 0,
+            active: 0,
+            inactive: 0,
+        },
+        singer: {
+            total: 0,
+            active: 0,
+            inactive: 0,
+        },
+        account: {
+            total: 0,
+            active: 0,
+            inactive: 0,
+        },
+        user: {
+            total: 0,
+            active: 0,
+            inactive: 0,
+        },
+    };
+    statistic.topicSong.total = yield topic_model_1.default.countDocuments({
+        deleted: false,
+    });
+    statistic.topicSong.active = yield topic_model_1.default.countDocuments({
+        status: "active",
+        deleted: false,
+    });
+    statistic.topicSong.inactive = yield topic_model_1.default.countDocuments({
+        status: "inactive",
+        deleted: false,
+    });
+    statistic.song.total = yield song_model_1.default.countDocuments({
+        deleted: false,
+    });
+    statistic.song.active = yield song_model_1.default.countDocuments({
+        status: "active",
+        deleted: false,
+    });
+    statistic.song.inactive = yield song_model_1.default.countDocuments({
+        status: "inactive",
+        deleted: false,
+    });
+    statistic.singer.total = yield singer_model_1.default.countDocuments({
+        deleted: false,
+    });
+    statistic.singer.active = yield singer_model_1.default.countDocuments({
+        status: "active",
+        deleted: false,
+    });
+    statistic.singer.inactive = yield singer_model_1.default.countDocuments({
+        status: "inactive",
+        deleted: false,
+    });
     res.render("admin/pages/dashboard/index", {
-        pageTitle: "Tổng quan"
+        statistic: statistic,
+        pageTitle: "Tổng quan",
     });
 });
 exports.index = index;

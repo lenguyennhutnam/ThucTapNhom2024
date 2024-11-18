@@ -27,5 +27,5 @@ app.use('/tinymce', express_1.default.static(path_1.default.join(__dirname, 'nod
 (0, index_route_1.routesAdmin)(app);
 (0, index_route_2.routesClient)(app);
 app.listen(port, () => {
-    console.log(`App listening on port ${port}`);
+    console.log(`app listening on http://localhost:${port}`);
 });

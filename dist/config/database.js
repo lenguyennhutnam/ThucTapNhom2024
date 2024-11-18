@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.connectDatabase = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const connectDatabase = () => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("Connecting to database...");
     try {
         yield mongoose_1.default.connect(process.env.MONGO_URL);
         console.log("Kết nối database thành công!");
